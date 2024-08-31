@@ -32,6 +32,7 @@ export class AppController {
 
   @Post('book')
   async createBook(@Body() book: BookDto) {
+    console.log('BOOK BODY', book);
     return await this.appService.createBook(book);
   }
 

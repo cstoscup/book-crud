@@ -19,7 +19,6 @@ function App() {
       .get("http://localhost:3000/book")
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setBooks(data);
       })
       .catch((error) => {
@@ -27,16 +26,23 @@ function App() {
       });
   }, []);
 
-  if (books.length === 0) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div>
-        <h1>My Library</h1>
-        <Books books={books} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>My Library</h1>
+      <form action="http://localhost:3000/book" method="post">
+        <label>Title:</label>
+        <input type="text" name="title" />
+        <label>Author:</label>
+        <input type="text" name="author" />
+        <label>Genre:</label>
+        <input type="text" name="genre" />
+        <label>Price:</label>
+        <input type="text" name="price" />
+        <input type="button" value="Add Book" onClick={submitForm} />
+      </form>
+      {books.length === 0 ? <div>Loading...</div> : <Books books={books} />}
+    </div>
+  );
 }
 
 export default App;
