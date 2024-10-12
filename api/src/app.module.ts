@@ -17,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       database: 'book-crud',
       entities: [Book],
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
     TypeOrmModule.forFeature([Book]),
   ],
