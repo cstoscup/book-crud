@@ -32,12 +32,12 @@ export class AppController {
 
   @Post('book')
   async createBook(@Body() book: BookDto) {
-    console.log('BOOK BODY', book);
     return await this.appService.createBook(book);
   }
 
   @Put('book/:id')
   async updateBook(@Body() book: BookDto, @Param('id') id: number) {
+    console.log('book', book);
     return await this.appService.updateBook(id, book);
   }
 

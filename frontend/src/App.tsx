@@ -29,18 +29,11 @@ function App() {
   return (
     <div>
       <h1>My Library</h1>
-      <form action="http://localhost:3000/book" method="post">
-        <label>Title:</label>
-        <input type="text" name="title" />
-        <label>Author:</label>
-        <input type="text" name="author" />
-        <label>Genre:</label>
-        <input type="text" name="genre" />
-        <label>Price:</label>
-        <input type="text" name="price" />
-        <input type="button" value="Add Book" onClick={submitForm} />
-      </form>
-      {books.length === 0 ? <div>Loading...</div> : <Books books={books} />}
+      {books.length === 0 ? (
+        <div>Loading...</div>
+      ) : (
+        <Books books={books} setBooks={setBooks} />
+      )}
     </div>
   );
 }
