@@ -8,6 +8,8 @@ import {
   Put,
 } from '@nestjs/common';
 import { AppService } from './app.service';
+import * as api from '@opentelemetry/api';
+import { BunyanLoggerService } from './logger.service';
 
 export class BookDto {
   title: string;
@@ -18,10 +20,16 @@ export class BookDto {
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly logger: BunyanLoggerService,
+  ) {}
 
   @Get('book')
   async getBooks() {
+    const activeSpan = api.trace.getSpan(api.context.active());
+    activeSpan.addEvent('Getting books');
+    this.logger.log('Fetching all books');
     return await this.appService.getBooks();
   }
 
@@ -37,7 +45,8 @@ export class AppController {
 
   @Put('book/:id')
   async updateBook(@Body() book: BookDto, @Param('id') id: number) {
-    console.log('book', book);
+    const activeSpan = api.trace.getSpan(api.context.active());
+    activeSpan.addEvent('Updating book: ' + book.title);
     return await this.appService.updateBook(id, book);
   }
 

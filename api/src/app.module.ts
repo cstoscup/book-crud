@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './book.entity';
 import { ConfigModule } from '@nestjs/config';
+import { BunyanLoggerService } from './logger.service';
 
 @Module({
   imports: [
@@ -22,6 +23,6 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forFeature([Book]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, BunyanLoggerService],
 })
 export class AppModule {}
