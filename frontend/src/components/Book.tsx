@@ -30,7 +30,6 @@ const BookItem = ({ book, setBooks }: Props) => {
         genre !== book.genre ||
         price !== book.price
       ) {
-        console.log("SEND REQUEST");
         axios
           .put(`http://localhost:3000/book/${book.id}`, {
             title,

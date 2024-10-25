@@ -37,7 +37,6 @@ export class AppController {
 
   @Put('book/:id')
   async updateBook(@Body() book: BookDto, @Param('id') id: number) {
-    console.log('book', book);
     return await this.appService.updateBook(id, book);
   }
 
