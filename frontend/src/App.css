@@ -33,8 +33,10 @@
   font-weight: bold;
 }
 
-@media (max-width: 300px) {
-  /* .books-container {
-    flex-direction: column;
-  } */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
 }
